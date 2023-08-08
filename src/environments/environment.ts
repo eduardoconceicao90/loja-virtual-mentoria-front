@@ -1,3 +1,3 @@
 export const environment = {
-  urlAPI: 'https://localhost:443/loja_virtual'
+  urlAPI: 'http://localhost:8080/loja_virtual'
 };
