@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from './model/usuario';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { Usuario } from './model/usuario';
 export class AppComponent {
   tituloLogin = 'Login da loja';
 
-  constructor(private fb: FormBuilder){ }
+  constructor(private fb: FormBuilder,
+              private loginService: LoginService){ }
 
   /* Pegar dados do formulário */
   loginForm = this.fb.group({
@@ -29,5 +31,7 @@ export class AppComponent {
   fazerLogin(){
     const usuario = this.loginObjeto();
     console.log('Login -> ' + usuario.login, 'Senha -> ' + usuario.senha);
+
+    this.loginService.logar(usuario);
   }
 }

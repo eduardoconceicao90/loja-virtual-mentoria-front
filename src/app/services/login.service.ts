@@ -13,7 +13,17 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   logar(usuario: Usuario){
-    return this.http.post<String>(this.urlAPI, usuario);
+    return this.http.post<String>(this.urlAPI, usuario).subscribe({
+      next: (res) => {
+        console.log('--------------- JWT ---------------')
+        console.log(res);
+        console.log('--------------- JWT ---------------')
+        alert('Login realizado!');
+      },
+      error: (error) => {
+        console.log(error);
+        alert('Erro login');
+      }
+    });
   }
-
 }
