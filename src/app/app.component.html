@@ -1,16 +1,16 @@
 <div style="display: flex; justify-content: center; flex-direction: row; margin-top: 15%;">
-  <form>
+  <form [formGroup]="loginForm">
     <h3>{{ tituloLogin }}</h3>
     <div class="row mb-3" style="margin-top: 25px;">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Login</label>
+      <label for="login" class="col-sm-2 col-form-label">Login</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail3">
+        <input type="email" class="form-control" id="login" name="login" formControlName="login">
       </div>
     </div>
     <div class="row mb-3">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
+      <label for="senha" class="col-sm-2 col-form-label">Senha</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3">
+        <input type="password" class="form-control" id="senha" name="senha" formControlName="senha">
       </div>
     </div>
     <div class="row mb-3">
