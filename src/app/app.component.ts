@@ -25,4 +25,9 @@ export class AppComponent {
       senha: this.loginForm.get('senha')?.value!
     }
   }
+
+  fazerLogin(){
+    const usuario = this.loginObjeto();
+    console.log('Login -> ' + usuario.login, 'Senha -> ' + usuario.senha);
+  }
 }
