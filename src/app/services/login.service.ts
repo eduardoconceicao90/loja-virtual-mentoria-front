@@ -15,10 +15,9 @@ export class LoginService {
   logar(usuario: Usuario){
     return this.http.post<String>(this.urlAPI, usuario).subscribe({
       next: (res) => {
-        console.log('--------------- JWT ---------------')
-        console.log(res);
-        console.log('--------------- JWT ---------------')
-        alert('Login realizado!');
+        var resJson = JSON.stringify(res);
+        var jwt = JSON.parse(resJson);
+        localStorage.setItem('Authorization', jwt.Authorization);
       },
       error: (error) => {
         console.log(error);
