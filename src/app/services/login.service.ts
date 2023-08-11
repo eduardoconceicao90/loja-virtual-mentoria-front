@@ -22,7 +22,7 @@ export class LoginService {
       },
       error: (error) => {
         console.log(error);
-        alert('Erro login');
+        alert('Erro login: ' + error.error.text);
       }
     });
   }
