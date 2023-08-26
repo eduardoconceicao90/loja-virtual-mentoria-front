@@ -29,7 +29,9 @@ export class LoginService {
   recuperarSenha(login: String){
     return this.http.post<String>(this.urlAPI + "/recuperarSenha", login).subscribe({
       next: (res) => {
-        alert(res);
+        var resJson = JSON.stringify(res);
+        var resposta = JSON.parse(resJson);
+        alert(resposta.msg);
       },
       error: (error) => {
         console.log(error);
