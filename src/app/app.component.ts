@@ -31,7 +31,17 @@ export class AppComponent {
   fazerLogin(){
     const usuario = this.loginObjeto();
     console.log('Login -> ' + usuario.login, 'Senha -> ' + usuario.senha);
-
     this.loginService.logar(usuario);
+  }
+
+  recuperarSenha(){
+    const usuario = this.loginObjeto();
+    var login = usuario.login;
+
+    if(login == '' || login == null){
+      alert('Informe o login para recuperar senha');
+    } else {
+      this.loginService.recuperarSenha(login);
+    }
   }
 }
