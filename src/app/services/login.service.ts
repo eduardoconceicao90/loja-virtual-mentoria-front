@@ -8,12 +8,12 @@ import { Usuario } from '../model/usuario';
 })
 export class LoginService {
 
-  private urlAPI = environment.urlAPI + "/login";
+  private urlAPI = environment.urlAPI;
 
   constructor(private http: HttpClient) { }
 
   logar(usuario: Usuario){
-    return this.http.post<String>(this.urlAPI, usuario).subscribe({
+    return this.http.post<String>(this.urlAPI + "/login", usuario).subscribe({
       next: (res) => {
         var resJson = JSON.stringify(res);
         var jwt = JSON.parse(resJson);
@@ -24,5 +24,17 @@ export class LoginService {
         alert('Erro login: ' + error.error.text);
       }
     });
+  }
+
+  recuperarSenha(login: String){
+    return this.http.post<String>(this.urlAPI + "/recuperarSenha", login).subscribe({
+      next: (res) => {
+        alert(res);
+      },
+      error: (error) => {
+        console.log(error);
+        alert('Erro ao recuperar senha: ' + error.error.text);
+      }
+    })
   }
 }
