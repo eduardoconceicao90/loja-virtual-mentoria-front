@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../model/usuario';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ import { Usuario } from '../model/usuario';
 export class LoginService {
 
   private urlAPI = environment.urlAPI;
+
+  jwtService: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +27,14 @@ export class LoginService {
         alert('Erro login: ' + error.error.text);
       }
     });
+  }
+
+  usuarioLogado(){
+    let authorization = localStorage.getItem('Authorization');
+    if(authorization != null){
+      return !this.jwtService.isTokenExpired(authorization);
+    }
+    return false;
   }
 
   recuperarSenha(login: String){
