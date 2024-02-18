@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../model/usuario';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class LoginService {
 
   jwtService: JwtHelperService = new JwtHelperService();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   logar(usuario: Usuario){
     return this.http.post<String>(this.urlAPI + "/login", usuario).subscribe({
@@ -21,6 +23,7 @@ export class LoginService {
         var resJson = JSON.stringify(res);
         var jwt = JSON.parse(resJson);
         localStorage.setItem('Authorization', jwt.Authorization);
+        this.router.navigate(['home']);
       },
       error: (error) => {
         console.log(error);
