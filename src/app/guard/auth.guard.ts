@@ -12,13 +12,12 @@ export const authGuard: CanActivateFn = (route, state) => {
   var authorization = '' + localStorage.getItem('Authorization');
 
   var request = new XMLHttpRequest();
-  request.open("GET", environment.urlAPI + 'possuiAcesso/' + username + '/' + role, false);
+  request.open("GET", environment.urlAPI + '/possuiAcesso/' + username + '/' + role, false);
   request.setRequestHeader('Authorization', authorization);
   request.send();
 
-  var possuiAcessoRetorno = request.responseText;
+  var possuiAcessoRetorno = request.responseText === 'true' || new Boolean(request.responseText) === true;
+  var usuarioLogado = inject(LoginService).usuarioLogado();
 
-  console.info('possuiAcessoRetorno: ' + possuiAcessoRetorno)
-
-  return inject(LoginService).usuarioLogado();
+  return (usuarioLogado && possuiAcessoRetorno);
 };
