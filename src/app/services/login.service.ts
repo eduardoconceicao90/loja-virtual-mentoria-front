@@ -23,6 +23,7 @@ export class LoginService {
         var resJson = JSON.stringify(res);
         var jwt = JSON.parse(resJson);
         localStorage.setItem('Authorization', jwt.Authorization);
+        localStorage.setItem('username', jwt.username);
         this.router.navigate(['home']);
       },
       error: (error) => {
