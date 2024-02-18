@@ -34,7 +34,7 @@ export class LoginService {
   }
 
   usuarioLogado(){
-    let authorization = localStorage.getItem('Authorization');
+    var authorization = localStorage.getItem('Authorization');
     if(authorization != null){
       return !this.jwtService.isTokenExpired(authorization);
     }
