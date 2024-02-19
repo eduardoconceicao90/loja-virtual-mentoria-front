@@ -20,4 +20,8 @@ export class AppComponent implements OnInit {
       this.router.navigate(['login']);
     }
   }
+
+  usuarioLogado(){
+    return this.loginService.usuarioLogado();
+  }
 }
