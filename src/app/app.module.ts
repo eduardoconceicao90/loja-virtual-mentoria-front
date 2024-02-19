@@ -9,6 +9,7 @@ import { AuthInterceptorProvider } from './security/interceptor/auth.interceptor
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './security/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
