@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../services/login.service';
-import { Usuario } from '../model/usuario';
+import { LoginService } from '../../services/login.service';
+import { Usuario } from '../../model/usuario';
 
 
 @Component({
