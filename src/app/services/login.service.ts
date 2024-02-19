@@ -54,4 +54,9 @@ export class LoginService {
       }
     })
   }
+
+  deslogar() {
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
 }
