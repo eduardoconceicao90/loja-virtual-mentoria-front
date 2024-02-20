@@ -1,6 +1,6 @@
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../login.service';
 import { environment } from 'src/environments/environment';
 
 export const authGuard: CanActivateFn = (route, state) => {
@@ -19,5 +19,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   var possuiAcessoRetorno = request.responseText === 'true' || new Boolean(request.responseText) === true;
   var usuarioLogado = inject(LoginService).usuarioLogado();
 
-  return (usuarioLogado && possuiAcessoRetorno);
+  if(usuarioLogado){
+    return (usuarioLogado && possuiAcessoRetorno);
+  } else {
+    inject(Router).navigate(['login']);
+    return false;
+  }
 };

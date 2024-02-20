@@ -17,7 +17,7 @@ export class LoginService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
-  logar(usuario: Usuario){
+  login(usuario: Usuario){
     return this.http.post<String>(this.urlAPI + "/login", usuario).subscribe({
       next: (res) => {
         var resJson = JSON.stringify(res);
@@ -55,8 +55,7 @@ export class LoginService {
     })
   }
 
-  deslogar() {
+  logout() {
     localStorage.clear();
-    this.router.navigate(['login']);
   }
 }

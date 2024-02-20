@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../security/login.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +9,12 @@ import { LoginService } from '../services/login.service';
 })
 export class NavbarComponent {
 
-  constructor(private loginService: LoginService){
+  constructor(private loginService: LoginService,
+              private toastr: ToastrService) { }
 
-  }
-
-  deslogar(){
-    this.loginService.deslogar();
+  logout(){
+    this.loginService.logout();
+    this.toastr.info('Logout realizado com sucesso!', 'Logout', {timeOut: 4000});
   }
 
 }

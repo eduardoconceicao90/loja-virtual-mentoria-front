@@ -1,25 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from './services/login.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { LoginService } from './security/login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor (private loginService: LoginService,
-               private router: Router){
-  }
-
-  ngOnInit(): void {
-    if(this.loginService.usuarioLogado()){
-      this.router.navigate(['home']);
-    }else{
-      this.router.navigate(['login']);
-    }
-  }
+  constructor (private loginService: LoginService) { }
 
   usuarioLogado(){
     return this.loginService.usuarioLogado();
