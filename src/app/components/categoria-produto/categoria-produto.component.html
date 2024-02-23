@@ -1,14 +1,14 @@
-<p style="text-align: center; font-weight: bold; font-size: 15px;">Cadastro de categoria de produto</p>
-<form class="row g-3">
+<h2 style="text-align: center;">Cadastro de categoria de produto</h2>
+<form class="row g-3" [formGroup]="categoriaProdutoForm">
     <div class="col-2">
         <label for="id" class="form-label">ID:</label>
-        <input type="text" class="form-control" id="id" name="id" placeholder="ID" disabled>
+        <input type="number" class="form-control" id="id" name="id" placeholder="ID" formControlName="id" readonly>
     </div>
     <div class="col-10">
         <label for="nomeDesc" class="form-label">Nome da categoria</label>
-        <input type="text" class="form-control" id="nomeDesc" name="nomeDesc" placeholder="Nome da categoria">
+        <input type="text" class="form-control" id="nomeDesc" name="nomeDesc" placeholder="Nome da categoria" formControlName="nomeDesc" required>
     </div>
     <div class="col-12">
-        <button type="submit" class="mat-elevation-z4" mat-flat-button color="primary">Salvar</button>
+        <button type="submit" class="mat-elevation-z4" mat-flat-button color="primary" (click)="cadastrarProdutoCategoria()">Salvar</button>
     </div>
 </form>
