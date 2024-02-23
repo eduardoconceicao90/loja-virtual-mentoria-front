@@ -24,6 +24,7 @@ export class LoginService {
         var jwt = JSON.parse(resJson);
         localStorage.setItem('Authorization', jwt.Authorization);
         localStorage.setItem('username', jwt.username);
+        localStorage.setItem('empresa', jwt.empresa);
         this.router.navigate(['home']);
       },
       error: (error) => {
