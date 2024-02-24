@@ -18,12 +18,20 @@ export class CategoriaProdutoService {
 
   salvarCategoriaProduto(categoriaProduto: CategoriaProduto){
     return this.http.post<CategoriaProduto>(this.urlAPI + "/salvarCategoria", categoriaProduto).subscribe({
-        next: () => {
-          this.toastr.success('Categoria salva com sucesso!');
+        next: (res) => {
+          var resposta = JSON.stringify(res);
+          var jsonResposta = JSON.parse(resposta);
+
+          if(jsonResposta.error == undefined){
+            this.toastr.success('Categoria salva com sucesso!');
+          } else {
+            this.toastr.error(jsonResposta.error);
+          }
+
         },
         error: (error) => {
           console.log(error);
-          alert(error.error.error);
+          this.toastr.error(error.error.error);
         }
     });
   }

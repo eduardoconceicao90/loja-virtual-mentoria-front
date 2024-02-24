@@ -14,7 +14,7 @@ export class NavbarComponent {
 
   logout(){
     this.loginService.logout();
-    this.toastr.info('Logout realizado com sucesso!', 'Logout', {timeOut: 4000});
+    this.toastr.info('Logout realizado com sucesso!');
   }
 
 }

@@ -5,6 +5,7 @@ import { Usuario } from '../model/usuario';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { PessoaJuridica } from '../model/pessoa-juridica';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class LoginService {
   jwtService: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   login(usuario: Usuario){
     return this.http.post<String>(this.urlAPI + "/login", usuario).subscribe({
@@ -30,7 +32,7 @@ export class LoginService {
       },
       error: (error) => {
         console.log(error);
-        alert('Erro login: ' + error.error.text);
+        this.toastr.error(error.error.text);
       }
     });
   }
@@ -48,11 +50,11 @@ export class LoginService {
       next: (res) => {
         var resJson = JSON.stringify(res);
         var resposta = JSON.parse(resJson);
-        alert(resposta.msg);
+        this.toastr.success(resposta.msg);
       },
       error: (error) => {
         console.log(error);
-        alert('Erro ao recuperar senha: ' + error.error.text);
+        this.toastr.error(error.error.text);
       }
     })
   }

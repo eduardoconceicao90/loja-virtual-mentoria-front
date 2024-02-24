@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { Usuario } from '../../model/usuario';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent {
   tituloLogin = 'Login da loja';
 
   constructor(private fb: FormBuilder,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private toastr: ToastrService) { }
 
   /* Pegar dados do formulário */
   loginForm = this.fb.group({
@@ -40,7 +42,7 @@ export class LoginComponent {
     var login = usuario.login;
 
     if(login == '' || login == null){
-      alert('Informe o login para recuperar senha');
+      this.toastr.error('Informe o login para recuperar senha');
     } else {
       this.loginService.recuperarSenha(login);
     }
