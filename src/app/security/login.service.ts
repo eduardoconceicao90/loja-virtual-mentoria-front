@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../model/usuario';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { PessoaJuridica } from '../model/pessoa-juridica';
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +63,11 @@ export class LoginService {
 
   codEmpresa(){
     return localStorage.getItem('empresa');
+  }
+
+  objetoEmpresa(): PessoaJuridica {
+    var pessoaJuridica = new PessoaJuridica();
+    pessoaJuridica.id = this.codEmpresa();
+    return pessoaJuridica;
   }
 }

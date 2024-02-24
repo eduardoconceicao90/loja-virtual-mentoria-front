@@ -19,7 +19,7 @@ export class CategoriaProdutoComponent {
   categoriaProdutoForm = this.fb.group({
     id:[],
     nomeDesc: [null, Validators.required],
-    empresa: [Number(this.loginService.codEmpresa()), Validators.required]
+    empresa: [this.loginService.objetoEmpresa(), Validators.required]
   });
 
   /* Transformar em objeto */

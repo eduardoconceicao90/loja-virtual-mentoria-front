@@ -1,5 +1,7 @@
-export interface CategoriaProduto {
-    id?: number;
-    nomeDesc: string;
-    empresa: number;
+import { PessoaJuridica } from "./pessoa-juridica";
+
+export class CategoriaProduto {
+    id?: any;
+    nomeDesc?: string;
+    empresa?: PessoaJuridica;
   }
