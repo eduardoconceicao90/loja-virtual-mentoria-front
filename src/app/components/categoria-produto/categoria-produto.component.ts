@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CategoriaProduto } from 'src/app/model/categoria-produto';
+import { LoginService } from 'src/app/security/login.service';
 import { CategoriaProdutoService } from 'src/app/services/categoria-produto.service';
 
 @Component({
@@ -11,12 +12,14 @@ import { CategoriaProdutoService } from 'src/app/services/categoria-produto.serv
 export class CategoriaProdutoComponent {
 
   constructor(private fb: FormBuilder,
-              private categoriaProdutoService: CategoriaProdutoService) { }
+              private categoriaProdutoService: CategoriaProdutoService,
+              private loginService: LoginService) { }
 
   /* Pegar dados do formulário */
   categoriaProdutoForm = this.fb.group({
     id:[],
-    nomeDesc: [null, Validators.required]
+    nomeDesc: [null, Validators.required],
+    empresa: [Number(this.loginService.codEmpresa()), Validators.required]
   });
 
   /* Transformar em objeto */

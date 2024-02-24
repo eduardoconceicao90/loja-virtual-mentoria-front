@@ -59,4 +59,8 @@ export class LoginService {
   logout() {
     localStorage.clear();
   }
+
+  codEmpresa(){
+    return localStorage.getItem('empresa');
+  }
 }
