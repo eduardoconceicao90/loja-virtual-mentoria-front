@@ -33,7 +33,7 @@ export class CategoriaProdutoComponent {
 
   cadastrarProdutoCategoria(){
     const categoria = this.categoriaProdutoObjeto();
-    console.log(categoria)
+    this.categoriaProdutoService.salvarCategoriaProduto(categoria);
   }
 
 }
