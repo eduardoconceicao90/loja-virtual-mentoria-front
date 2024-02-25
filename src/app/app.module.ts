@@ -33,6 +33,7 @@ import { AuthInterceptorProvider } from './security/interceptor/auth.interceptor
 import { CategoriaProdutoComponent } from './components/categoria-produto/categoria-produto.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -46,32 +47,33 @@ import { NgxMaskModule } from 'ngx-mask';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-     // Forms
-     ReactiveFormsModule,
-     // Requisições http
-     HttpClientModule,
-     // Angular Material
-     MatFormFieldModule,
-     MatPaginatorModule,
-     MatCheckboxModule,
-     MatSnackBarModule,
-     MatToolbarModule,
-     MatSidenavModule,
-     MatButtonModule,
-     MatSelectModule,
-     MatTableModule,
-     MatInputModule,
-     MatRadioModule,
-     MatIconModule,
-     MatListModule,
-     MatCardModule,
+    // Forms
+    ReactiveFormsModule,
+    // Requisições http
+    HttpClientModule,
+    // Angular Material
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatTableModule,
+    MatInputModule,
+    MatRadioModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
 
-     ToastrModule.forRoot({
-      timeOut: 3000,
-      closeButton: true,
-      progressBar: true
+    ToastrModule.forRoot({
+    timeOut: 3000,
+    closeButton: true,
+    progressBar: true
     }),
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
