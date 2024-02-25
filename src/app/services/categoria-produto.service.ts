@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CategoriaProduto } from '../model/categoria-produto';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../security/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class CategoriaProdutoService {
 
   constructor(private http: HttpClient,
               private router: Router,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private loginService: LoginService) { }
 
   salvarCategoriaProduto(categoriaProduto: CategoriaProduto){
     return this.http.post<CategoriaProduto>(this.urlAPI + "/salvarCategoria", categoriaProduto).subscribe({
@@ -37,6 +39,6 @@ export class CategoriaProdutoService {
   }
 
   listarCategoriaProduto(){
-    return this.http.get<CategoriaProduto[]>(this.urlAPI + "/listarCategoriaProduto");
+    return this.http.get<CategoriaProduto[]>(this.urlAPI + "/listarCategoriaProduto/" + this.loginService.codEmpresa());
   }
 }

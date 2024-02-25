@@ -23,12 +23,14 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
+            <th>Empresa</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let categoria of categorias">
             <td>{{ categoria.id }}</td>
             <td>{{ categoria.nomeDesc }}</td>
+            <td>{{ categoria.empresa?.nome }}</td>
         </tr>
     </tbody>
 </table>
