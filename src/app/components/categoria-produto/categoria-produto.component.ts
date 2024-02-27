@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriaProduto } from 'src/app/model/categoria-produto';
 import { LoginService } from 'src/app/security/login.service';
@@ -13,23 +13,35 @@ import { CategoriaProdutoService } from 'src/app/services/categoria-produto.serv
 export class CategoriaProdutoComponent implements OnInit {
 
   categorias: CategoriaProduto[] = [];
-  nomeEmpresa: any;
+  categoriaProdutoForm: FormGroup;
+  catProduto: CategoriaProduto;
 
   constructor(private fb: FormBuilder,
               private categoriaProdutoService: CategoriaProdutoService,
               private loginService: LoginService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService) {
+
+        this.catProduto = new CategoriaProduto();
+
+        /* Pegar dados do formulário */
+        this.categoriaProdutoForm = this.fb.group({
+          id:[],
+          nomeDesc: [null, Validators.required],
+          empresa: [this.loginService.objetoEmpresa(), Validators.required]
+        });
+ }
 
   ngOnInit(): void {
     this.listarCategoriaProduto();
   }
 
-  /* Pegar dados do formulário */
-  categoriaProdutoForm = this.fb.group({
-    id:[],
-    nomeDesc: [null, Validators.required],
-    empresa: [this.loginService.objetoEmpresa(), Validators.required]
-  });
+  novo(): void {
+    this.categoriaProdutoForm = this.fb.group({
+      id:[],
+      nomeDesc: [null, Validators.required],
+      empresa: [this.loginService.objetoEmpresa(), Validators.required]
+    });
+  }
 
   /* Transformar em objeto */
   categoriaProdutoObjeto(): CategoriaProduto {
@@ -43,6 +55,7 @@ export class CategoriaProdutoComponent implements OnInit {
   cadastrarProdutoCategoria(){
     const categoria = this.categoriaProdutoObjeto();
     this.categoriaProdutoService.salvarCategoriaProduto(categoria);
+    this.novo();
     this.listarCategoriaProduto();
   }
 
@@ -57,6 +70,25 @@ export class CategoriaProdutoComponent implements OnInit {
         this.toastr.error(error.error.text);
       }
     })
+  }
+
+  editarCategoriaProduto(categoriaProduto: CategoriaProduto){
+
+    const categoriaProdutoEditar = this.categoriaProdutoService.buscarPorId(categoriaProduto.id).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.catProduto = res;
+      },
+      error: (error) => {
+        this.toastr.error(error)
+      }
+    });
+
+    this.categoriaProdutoForm = this.fb.group({
+      id:[this.catProduto.id],
+      nomeDesc: [categoriaProduto.nomeDesc, Validators.required],
+      empresa: [this.loginService.objetoEmpresa(), Validators.required]
+    });
   }
 
 }

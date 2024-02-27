@@ -41,4 +41,8 @@ export class CategoriaProdutoService {
   listarCategoriaProduto(){
     return this.http.get<CategoriaProduto[]>(this.urlAPI + "/listarCategoriaProduto/" + this.loginService.codEmpresa());
   }
+
+  buscarPorId(id: number){
+    return this.http.get<CategoriaProduto>(this.urlAPI + "/buscarCategoriaPorId/" + id);
+  }
 }

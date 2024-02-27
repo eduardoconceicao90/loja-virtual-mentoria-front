@@ -24,6 +24,7 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Empresa</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +32,9 @@
             <td>{{ categoria.id }}</td>
             <td>{{ categoria.nomeDesc }}</td>
             <td>{{ categoria.empresa?.nome }}</td>
+            <td>
+                <button type="submit" class="mat-elevation-z4" mat-flat-button color="primary" (click)="editarCategoriaProduto(categoria)">Editar</button>
+            </td>
         </tr>
     </tbody>
 </table>
