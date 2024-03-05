@@ -45,4 +45,24 @@ export class CategoriaProdutoService {
   buscarPorId(id: number){
     return this.http.get<CategoriaProduto>(this.urlAPI + "/buscarCategoriaPorId/" + id);
   }
+
+  excluirCategoriaProduto(categoriaProduto: CategoriaProduto){
+    return this.http.post<CategoriaProduto>(this.urlAPI + "/deleteCategoria", categoriaProduto).subscribe({
+      next: (res) => {
+        var resposta = JSON.stringify(res);
+        var jsonResposta = JSON.parse(resposta);
+
+        if(jsonResposta.error == undefined){
+          this.toastr.success(resposta);
+        } else {
+          this.toastr.error(jsonResposta.error);
+        }
+
+      },
+      error: (error) => {
+        console.log(error);
+          this.toastr.error(error.error.error);
+      }
+    });
+  }
 }

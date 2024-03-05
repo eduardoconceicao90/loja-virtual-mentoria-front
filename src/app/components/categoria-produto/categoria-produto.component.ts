@@ -73,7 +73,6 @@ export class CategoriaProdutoComponent implements OnInit {
   }
 
   editarCategoriaProduto(categoriaProduto: CategoriaProduto){
-
     const categoriaProdutoEditar = this.categoriaProdutoService.buscarPorId(categoriaProduto.id).subscribe({
       next: (res) => {
         console.log(res)
@@ -89,6 +88,14 @@ export class CategoriaProdutoComponent implements OnInit {
       nomeDesc: [categoriaProduto.nomeDesc, Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
+  }
+
+  excluirCategoriaProduto(categoriaProduto: CategoriaProduto){
+    var confir = confirm('Deseja mesmo excluir?');
+    if(confir){
+      this.categoriaProdutoService.excluirCategoriaProduto(categoriaProduto.id);
+      this.listarCategoriaProduto();
+    }
   }
 
 }
