@@ -65,4 +65,8 @@ export class CategoriaProdutoService {
       }
     });
   }
+
+  buscarPorDescEEmpresaCategoria(valor: string){
+    return this.http.get<CategoriaProduto[]>(this.urlAPI + "/buscarPorDescEEmpresaCategoria/" + valor + "/" + this.loginService.codEmpresa());
+  }
 }

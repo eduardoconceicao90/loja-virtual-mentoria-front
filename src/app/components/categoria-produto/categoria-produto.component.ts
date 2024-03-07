@@ -15,6 +15,7 @@ export class CategoriaProdutoComponent implements OnInit {
   categorias: CategoriaProduto[] = [];
   categoriaProdutoForm: FormGroup;
   catProduto: CategoriaProduto;
+  pesquisa: string = '';
 
   constructor(private fb: FormBuilder,
               private categoriaProdutoService: CategoriaProdutoService,
@@ -98,4 +99,22 @@ export class CategoriaProdutoComponent implements OnInit {
     }
   }
 
+  setPesquisa(valor: string){
+    this.pesquisa = valor;
+  }
+
+  pesquisar(){
+    if(this.pesquisa.length <= 0){
+      this.listarCategoriaProduto();
+      return;
+    }
+    this.categoriaProdutoService.buscarPorDescEEmpresaCategoria(this.pesquisa).subscribe({
+      next: (res) => {
+        this.categorias = res;
+      },
+      error: (error) => {
+        this.toastr.error(error);
+      }
+    })
+  }
 }
