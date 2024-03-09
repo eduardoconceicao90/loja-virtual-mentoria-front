@@ -63,7 +63,6 @@ export class CategoriaProdutoComponent implements OnInit {
   listarCategoriaProduto(){
     return this.categoriaProdutoService.listarCategoriaProduto().subscribe({
       next: (res) => {
-        console.log(res)
         this.categorias = res;
       },
       error: (error) => {
@@ -76,7 +75,6 @@ export class CategoriaProdutoComponent implements OnInit {
   editarCategoriaProduto(categoriaProduto: CategoriaProduto){
     const categoriaProdutoEditar = this.categoriaProdutoService.buscarPorId(categoriaProduto.id).subscribe({
       next: (res) => {
-        console.log(res)
         this.catProduto = res;
       },
       error: (error) => {
@@ -94,7 +92,7 @@ export class CategoriaProdutoComponent implements OnInit {
   excluirCategoriaProduto(categoriaProduto: CategoriaProduto){
     var confir = confirm('Deseja mesmo excluir?');
     if(confir){
-      this.categoriaProdutoService.excluirCategoriaProduto(categoriaProduto.id);
+      this.categoriaProdutoService.excluirCategoriaProduto(categoriaProduto);
       this.listarCategoriaProduto();
     }
   }
