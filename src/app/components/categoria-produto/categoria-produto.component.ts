@@ -16,6 +16,7 @@ export class CategoriaProdutoComponent implements OnInit {
   categoriaProdutoForm: FormGroup;
   catProduto: CategoriaProduto;
   pesquisa: string = '';
+  qtdPagina: any = 0;
 
   constructor(private fb: FormBuilder,
               private categoriaProdutoService: CategoriaProdutoService,
@@ -33,6 +34,13 @@ export class CategoriaProdutoComponent implements OnInit {
  }
 
   ngOnInit(): void {
+
+    this.categoriaProdutoService.qtdPagina().subscribe({
+      next: (res) => {
+        this.qtdPagina = res;
+        console.log(this.qtdPagina)
+      }
+    })
     this.listarCategoriaProduto();
   }
 

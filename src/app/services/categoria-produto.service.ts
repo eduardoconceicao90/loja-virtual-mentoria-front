@@ -69,4 +69,8 @@ export class CategoriaProdutoService {
   buscarPorDescEEmpresaCategoria(valor: string){
     return this.http.get<CategoriaProduto[]>(this.urlAPI + "/buscarPorDescEEmpresaCategoria/" + valor + "/" + this.loginService.codEmpresa());
   }
+
+  qtdPagina(){
+    return this.http.get<any>(this.urlAPI + "/qtdPaginaCategoriaProduto/" + this.loginService.codEmpresa());
+  }
 }
