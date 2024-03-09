@@ -17,6 +17,7 @@ export class CategoriaProdutoComponent implements OnInit {
   catProduto: CategoriaProduto;
   pesquisa: string = '';
   qtdPagina: any = 0;
+  arrayNumber: Number[] = [];
 
   constructor(private fb: FormBuilder,
               private categoriaProdutoService: CategoriaProdutoService,
@@ -38,9 +39,14 @@ export class CategoriaProdutoComponent implements OnInit {
     this.categoriaProdutoService.qtdPagina().subscribe({
       next: (res) => {
         this.qtdPagina = res;
-        console.log(this.qtdPagina)
+        this.arrayNumber = Array(this.qtdPagina).fill(0).map((x, i) => i);
+        console.log(this.arrayNumber)
+      },
+      error: (error) => {
+
       }
-    })
+    });
+
     this.listarCategoriaProduto();
   }
 
@@ -122,5 +128,9 @@ export class CategoriaProdutoComponent implements OnInit {
         this.toastr.error(error);
       }
     })
+  }
+
+  buscarPagina(p: Number){
+    console.log(p)
   }
 }
