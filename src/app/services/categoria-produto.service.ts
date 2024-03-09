@@ -38,8 +38,9 @@ export class CategoriaProdutoService {
     });
   }
 
-  listarCategoriaProduto(){
-    return this.http.get<CategoriaProduto[]>(this.urlAPI + "/listarCategoriaProduto/" + this.loginService.codEmpresa());
+  listarCategoriaProduto(pagina: number){
+    console.log("idEmpresa: " + this.loginService.codEmpresa());
+    return this.http.get<CategoriaProduto[]>(this.urlAPI + "/listaPorPageCategoriaProduto/" + this.loginService.codEmpresa() + '/' + pagina);
   }
 
   buscarPorId(id: number){

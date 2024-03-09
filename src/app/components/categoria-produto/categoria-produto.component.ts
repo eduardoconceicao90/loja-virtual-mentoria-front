@@ -18,6 +18,7 @@ export class CategoriaProdutoComponent implements OnInit {
   pesquisa: string = '';
   qtdPagina: any = 0;
   arrayNumber: Number[] = [];
+  paginaAtual: any = 0;
 
   constructor(private fb: FormBuilder,
               private categoriaProdutoService: CategoriaProdutoService,
@@ -35,19 +36,16 @@ export class CategoriaProdutoComponent implements OnInit {
  }
 
   ngOnInit(): void {
-
     this.categoriaProdutoService.qtdPagina().subscribe({
       next: (res) => {
         this.qtdPagina = res;
         this.arrayNumber = Array(this.qtdPagina).fill(0).map((x, i) => i);
-        console.log(this.arrayNumber)
       },
       error: (error) => {
-
+        console.log(error);
       }
     });
-
-    this.listarCategoriaProduto();
+    this.listarCategoriaProduto(this.paginaAtual);
   }
 
   novo(): void {
@@ -71,17 +69,16 @@ export class CategoriaProdutoComponent implements OnInit {
     const categoria = this.categoriaProdutoObjeto();
     this.categoriaProdutoService.salvarCategoriaProduto(categoria);
     this.novo();
-    this.listarCategoriaProduto();
+    this.listarCategoriaProduto(this.paginaAtual);
   }
 
-  listarCategoriaProduto(){
-    return this.categoriaProdutoService.listarCategoriaProduto().subscribe({
+  listarCategoriaProduto(pagina: number){
+    return this.categoriaProdutoService.listarCategoriaProduto(pagina).subscribe({
       next: (res) => {
         this.categorias = res;
       },
       error: (error) => {
         console.log(error);
-        this.toastr.error(error.error.text);
       }
     })
   }
@@ -107,7 +104,7 @@ export class CategoriaProdutoComponent implements OnInit {
     var confir = confirm('Deseja mesmo excluir?');
     if(confir){
       this.categoriaProdutoService.excluirCategoriaProduto(categoriaProduto);
-      this.listarCategoriaProduto();
+      this.listarCategoriaProduto(this.paginaAtual);
     }
   }
 
@@ -117,7 +114,7 @@ export class CategoriaProdutoComponent implements OnInit {
 
   pesquisar(){
     if(this.pesquisa.length <= 0){
-      this.listarCategoriaProduto();
+      this.listarCategoriaProduto(this.paginaAtual);
       return;
     }
     this.categoriaProdutoService.buscarPorDescEEmpresaCategoria(this.pesquisa).subscribe({
@@ -131,6 +128,21 @@ export class CategoriaProdutoComponent implements OnInit {
   }
 
   buscarPagina(p: Number){
-    console.log(p)
+    this.paginaAtual = p;
+    this.listarCategoriaProduto(this.paginaAtual);
+  }
+
+  voltar() {
+    if(this.paginaAtual >= 0){
+      this.paginaAtual -= 1;
+    }
+    this.listarCategoriaProduto(this.paginaAtual);
+  }
+
+  proxima() {
+    if(this.paginaAtual < this.qtdPagina){
+      this.paginaAtual += 1;
+    }
+    this.listarCategoriaProduto(this.paginaAtual);
   }
 }
