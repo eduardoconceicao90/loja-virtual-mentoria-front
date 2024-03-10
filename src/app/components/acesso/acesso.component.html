@@ -1,0 +1,67 @@
+<h2 style="text-align: center;">Cadastro de acessos</h2>
+<form class="row g-3" [formGroup]="acessoForm">
+    <div class="col-2">
+        <label for="id" class="form-label">ID:</label>
+        <input type="number" class="form-control" id="id" name="id" placeholder="ID" formControlName="id" readonly>
+    </div>
+    <div class="col-10">
+        <label for="descricao" class="form-label">Nome do acesso</label>
+        <input type="text" maxlength="100" class="form-control" id="descricao" name="descricao" placeholder="Nome do acesso" formControlName="descricao" required>
+        <div *ngIf="acessoForm.get('descricao')?.errors" style="font-size: 10px; color: red;">
+            *Acesso obrigatório
+          </div>
+    </div>
+    <div class="col-12">
+        <button style="margin-right: 10px" type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="cadastrarAcesso()" [disabled]="!acessoForm.valid">Salvar</button>
+        <button type="button" class="mat-elevation-z4" mat-stroked-button color="primary" (click)="novo()">Limpar</button>
+    </div>
+</form>
+
+<form class="row g-3">
+    <label for="pesquisa" class="form-label">Pesquisar</label>
+    <div class="col-10">
+        <input type="text" #pesquisa (blur)="setPesquisa(pesquisa.value)"  class="form-control" id="pesquisa" name="pesquisa" placeholder="Nome do acesso para pesquisar">
+    </div>
+    <div class="col-2">
+        <button type="button" style="width: 80%;" class="mat-elevation-z4" mat-flat-button color="primary" (click)="pesquisar()">Pesquisar</button>
+    </div>
+</form>
+
+<br>
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Empresa</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let acesso of acessos">
+            <td>{{ acesso.id }}</td>
+            <td>{{ acesso.descricao }}</td>
+            <td>{{ acesso.empresa?.nome }}</td>
+            <td>
+                <button type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="editarAcesso(acesso)">Editar</button>
+                <button type="button" class="mat-elevation-z4" mat-flat-button color="warn" (click)="excluirAcesso(acesso)">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" (click)="voltar()">Voltar</a>
+    </li>
+    <li class="page-item" *ngFor="let p of arrayNumber; let i = index">
+      <a class="page-link" (click)="buscarPagina(i)">{{ i + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="proxima()">Próxima</a>
+    </li>
+  </ul>
+</nav>
+

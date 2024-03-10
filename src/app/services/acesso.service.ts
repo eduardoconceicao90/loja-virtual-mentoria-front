@@ -48,7 +48,7 @@ export class AcessoService {
   }
 
   excluirAcesso(acesso: Acesso){
-    return this.http.post<Acesso>(this.urlAPI + "/deleteAcesso", acesso).subscribe({
+    return this.http.post<Acesso>(this.urlAPI + "/deletarAcesso", acesso).subscribe({
       next: (res) => {
         var resposta = JSON.stringify(res);
         var jsonResposta = JSON.parse(resposta);
