@@ -36,15 +36,6 @@ export class MarcaProdutoComponent implements OnInit {
  }
 
   ngOnInit(): void {
-    this.marcaProdutoService.qtdPagina().subscribe({
-      next: (res) => {
-        this.qtdPagina = res;
-        this.arrayNumber = Array(this.qtdPagina).fill(0).map((x, i) => i);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
     this.listarMarcaProduto(this.paginaAtual);
   }
 
@@ -75,6 +66,7 @@ export class MarcaProdutoComponent implements OnInit {
   listarMarcaProduto(pagina: number){
     return this.marcaProdutoService.listarMarcaProduto(pagina).subscribe({
       next: (res) => {
+        this.quantidadePaginas();
         this.marcas = res;
       },
       error: (error) => {
@@ -144,6 +136,18 @@ export class MarcaProdutoComponent implements OnInit {
       this.paginaAtual += 1;
     }
     this.listarMarcaProduto(this.paginaAtual);
+  }
+
+  quantidadePaginas(){
+    this.marcaProdutoService.qtdPagina().subscribe({
+      next: (res) => {
+        this.qtdPagina = res;
+        this.arrayNumber = Array(this.qtdPagina).fill(0).map((x, i) => i);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }
 

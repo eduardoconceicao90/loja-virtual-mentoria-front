@@ -36,15 +36,6 @@ export class CategoriaProdutoComponent implements OnInit {
  }
 
   ngOnInit(): void {
-    this.categoriaProdutoService.qtdPagina().subscribe({
-      next: (res) => {
-        this.qtdPagina = res;
-        this.arrayNumber = Array(this.qtdPagina).fill(0).map((x, i) => i);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
     this.listarCategoriaProduto(this.paginaAtual);
   }
 
@@ -75,6 +66,7 @@ export class CategoriaProdutoComponent implements OnInit {
   listarCategoriaProduto(pagina: number){
     return this.categoriaProdutoService.listarCategoriaProduto(pagina).subscribe({
       next: (res) => {
+        this.quantidadePaginas();
         this.categorias = res;
       },
       error: (error) => {
@@ -144,5 +136,17 @@ export class CategoriaProdutoComponent implements OnInit {
       this.paginaAtual += 1;
     }
     this.listarCategoriaProduto(this.paginaAtual);
+  }
+
+  quantidadePaginas(){
+    this.categoriaProdutoService.qtdPagina().subscribe({
+      next: (res) => {
+        this.qtdPagina = res;
+        this.arrayNumber = Array(this.qtdPagina).fill(0).map((x, i) => i);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }
