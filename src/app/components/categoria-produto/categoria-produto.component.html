@@ -12,7 +12,8 @@
           </div>
     </div>
     <div class="col-12">
-        <button type="submit" class="mat-elevation-z4" mat-flat-button color="primary" (click)="cadastrarProdutoCategoria()" [disabled]="!categoriaProdutoForm.valid">Salvar</button>
+        <button style="margin-right: 10px" type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="cadastrarProdutoCategoria()" [disabled]="!categoriaProdutoForm.valid">Salvar</button>
+        <button type="button" class="mat-elevation-z4" mat-stroked-button color="primary" (click)="novo()">Limpar</button>
     </div>
 </form>
 
@@ -43,8 +44,8 @@
             <td>{{ categoria.nomeDesc }}</td>
             <td>{{ categoria.empresa?.nome }}</td>
             <td>
-                <button type="submit" class="mat-elevation-z4" mat-flat-button color="primary" (click)="editarCategoriaProduto(categoria)">Editar</button>
-                <button type="submit" class="mat-elevation-z4" mat-flat-button color="warn" (click)="excluirCategoriaProduto(categoria)">Excluir</button>
+                <button type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="editarCategoriaProduto(categoria)">Editar</button>
+                <button type="button" class="mat-elevation-z4" mat-flat-button color="warn" (click)="excluirCategoriaProduto(categoria)">Excluir</button>
             </td>
         </tr>
     </tbody>
