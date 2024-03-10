@@ -57,7 +57,7 @@ export class MarcaProdutoComponent implements OnInit {
   }
 
   /* Transformar em objeto */
-  MarcaProdutoObjeto(): MarcaProduto {
+  marcaProdutoObjeto(): MarcaProduto {
     return {
       id: this.marcaProdutoForm.get('id')?.value!,
       nomeDesc: this.marcaProdutoForm.get('nomeDesc')?.value!,
@@ -66,7 +66,7 @@ export class MarcaProdutoComponent implements OnInit {
   }
 
   cadastrarProdutoMarca(){
-    const marca = this.MarcaProdutoObjeto();
+    const marca = this.marcaProdutoObjeto();
     this.marcaProdutoService.salvarMarcaProduto(marca);
     this.novo();
     this.listarMarcaProduto(this.paginaAtual);
