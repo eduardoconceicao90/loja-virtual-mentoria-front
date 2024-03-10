@@ -34,6 +34,7 @@ import { CategoriaProdutoComponent } from './components/categoria-produto/catego
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MarcaProdutoComponent } from './components/marca-produto/marca-produto.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    CategoriaProdutoComponent
+    CategoriaProdutoComponent,
+    MarcaProdutoComponent
   ],
   imports: [
     BrowserModule,
