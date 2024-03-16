@@ -1,4 +1,10 @@
-export class PessoaJuridica {
-  id?: any;
-  nome?: string;
+import { Pessoa } from "./pessoa";
+
+export class PessoaJuridica extends Pessoa {
+  cnpj?: string;
+  insEstadual?: string;
+  insMunicipal?: string;
+  nomeFantasia?: string;
+  razaoSocial?: string;
+  categoria?: string;
 }
