@@ -32,11 +32,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthInterceptorProvider } from './security/interceptor/auth.interceptor';
 import { CategoriaProdutoComponent } from './components/categoria-produto/categoria-produto.component';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MarcaProdutoComponent } from './components/marca-produto/marca-produto.component';
 import { AcessoComponent } from './components/acesso/acesso.component';
 import { PessoaJuridicaComponent } from './components/pessoa-juridica/pessoa-juridica.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -72,16 +72,16 @@ import { PessoaJuridicaComponent } from './components/pessoa-juridica/pessoa-jur
     MatIconModule,
     MatListModule,
     MatCardModule,
-
+    NgxMaskDirective,
+    NgxMaskPipe,
     ToastrModule.forRoot({
     timeOut: 3000,
     closeButton: true,
     progressBar: true
     }),
-    NgxMaskModule.forRoot(),
     NgxPaginationModule
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [AuthInterceptorProvider, provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

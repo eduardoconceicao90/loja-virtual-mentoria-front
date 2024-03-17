@@ -14,7 +14,7 @@
 
     <div class="col-5">
       <label for="cnpj" class="form-label">CNPJ</label>
-      <input type="text" maxlength="100" class="form-control" id="cnpj" name="cnpj" formControlName="cnpj" required>
+      <input type="text" maxlength="100" class="form-control" id="cnpj" name="cnpj" formControlName="cnpj" required mask="00.000.000/0000-00">
       <div *ngIf="pessoaJuridicaForm.get('cnpj')?.errors" style="font-size: 10px; color: red;">
           *Pessoa jurídica obrigatória
         </div>
@@ -76,7 +76,7 @@
 
     <div class="col-4">
       <label for="telefone" class="form-label">Telefone do responsável</label>
-      <input type="text" maxlength="100" class="form-control" id="telefone" name="telefone" formControlName="telefone" required>
+      <input type="text" maxlength="100" class="form-control" id="telefone" name="telefone" formControlName="telefone" required mask="(00) 00000-0000">
       <div *ngIf="pessoaJuridicaForm.get('telefone')?.errors" style="font-size: 10px; color: red;">
           *Telefone do responsável obrigatório
         </div>
@@ -118,7 +118,6 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Empresa</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -126,7 +125,6 @@
         <tr *ngFor="let pessoaJuridica of listaPJ">
             <td>{{ pessoaJuridica.id }}</td>
             <td>{{ pessoaJuridica.nomeFantasia }}</td>
-            <td>{{ pessoaJuridica.empresa?.nome }}</td>
             <td>
                 <button type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="editarPessoaJuridica(pessoaJuridica)">Editar</button>
                 <button type="button" class="mat-elevation-z4" mat-flat-button color="warn" (click)="excluirPessoaJuridica(pessoaJuridica)">Excluir</button>
