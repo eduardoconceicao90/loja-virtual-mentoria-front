@@ -68,7 +68,7 @@
 
     <div class="col-4">
       <label for="email" class="form-label">E-mail do responsável</label>
-      <input type="text" maxlength="100" class="form-control" id="email" name="email" formControlName="email" required>
+      <input type="text" maxlength="100" class="form-control" id="email" name="email" formControlName="email" required ngModel email>
       <div *ngIf="pessoaJuridicaForm.get('email')?.errors" style="font-size: 10px; color: red;">
           *E-mail do responsável obrigatório
         </div>
