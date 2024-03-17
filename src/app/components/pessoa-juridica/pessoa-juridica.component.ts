@@ -36,11 +36,11 @@ export class PessoaJuridicaComponent implements OnInit {
           insMunicipal: [null, Validators.required],
           nomeFantasia: [null, Validators.required],
           razaoSocial: [null, Validators.required],
-          categoria: [null, Validators.required],
+          categoria: ["", Validators.required],
           nome: [null, Validators.required],
           email: [null, Validators.required],
           telefone: [null, Validators.required],
-          tipoPessoa: [null, !Validators.required],
+          tipoPessoa: ["", !Validators.required],
           empresa: [this.loginService.objetoEmpresa(), Validators.required]
         });
  }
@@ -57,11 +57,11 @@ export class PessoaJuridicaComponent implements OnInit {
       insMunicipal: [null, Validators.required],
       nomeFantasia: [null, Validators.required],
       razaoSocial: [null, Validators.required],
-      categoria: [null, Validators.required],
+      categoria: ["", Validators.required],
       nome: [null, Validators.required],
       email: [null, Validators.required],
       telefone: [null, Validators.required],
-      tipoPessoa: [null, !Validators.required],
+      tipoPessoa: ["", !Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
   }
