@@ -87,7 +87,7 @@ export class CategoriaProdutoComponent implements OnInit {
 
     this.categoriaProdutoForm = this.fb.group({
       id:[this.catProduto.id],
-      nomeDesc: [categoriaProduto.nomeDesc, Validators.required],
+      nomeDesc: [this.catProduto.nomeDesc, Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
   }

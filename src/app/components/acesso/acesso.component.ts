@@ -87,7 +87,7 @@ export class AcessoComponent implements OnInit {
 
     this.acessoForm = this.fb.group({
       id:[this.ac.id],
-      descricao: [acesso.descricao, Validators.required],
+      descricao: [this.ac.descricao, Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
   }

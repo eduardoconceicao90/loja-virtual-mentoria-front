@@ -87,7 +87,7 @@ export class MarcaProdutoComponent implements OnInit {
 
     this.marcaProdutoForm = this.fb.group({
       id:[this.marProduto.id],
-      nomeDesc: [marcaProduto.nomeDesc, Validators.required],
+      nomeDesc: [this.marProduto.nomeDesc, Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
   }
