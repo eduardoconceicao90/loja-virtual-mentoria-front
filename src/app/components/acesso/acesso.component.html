@@ -4,6 +4,7 @@
         <label for="id" class="form-label">ID:</label>
         <input type="number" class="form-control" id="id" name="id" placeholder="ID" formControlName="id" readonly>
     </div>
+    
     <div class="col-10">
         <label for="descricao" class="form-label">Nome do acesso</label>
         <input type="text" maxlength="100" class="form-control" id="descricao" name="descricao" placeholder="Nome do acesso" formControlName="descricao" required>
@@ -11,6 +12,7 @@
             *Acesso obrigatório
           </div>
     </div>
+
     <div class="col-12">
         <button style="margin-right: 10px" type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="cadastrarAcesso()" [disabled]="!acessoForm.valid">Salvar</button>
         <button type="button" class="mat-elevation-z4" mat-stroked-button color="primary" (click)="novo()">Limpar</button>

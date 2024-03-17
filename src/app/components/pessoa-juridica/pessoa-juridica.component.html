@@ -1,1 +1,140 @@
-<p>pessoa-juridica works!</p>
+<h2 style="text-align: center;">Cadastro de pessoa jurídica</h2>
+<form class="row g-3" [formGroup]="pessoaJuridicaForm">
+    <div class="col-2">
+        <label for="id" class="form-label">ID:</label>
+        <input type="number" class="form-control" id="id" name="id" placeholder="ID" formControlName="id" readonly>
+    </div>
+    <div class="col-5">
+        <label for="nomeFantasia" class="form-label">Nome fantasia</label>
+        <input type="text" maxlength="100" class="form-control" id="nomeFantasia" name="nomeFantasia" formControlName="nomeFantasia" required>
+        <div *ngIf="pessoaJuridicaForm.get('nomeFantasia')?.errors" style="font-size: 10px; color: red;">
+            *Nome fantasia obrigatório
+          </div>
+    </div>
+
+    <div class="col-5">
+      <label for="cnpj" class="form-label">CNPJ</label>
+      <input type="text" maxlength="100" class="form-control" id="cnpj" name="cnpj" formControlName="cnpj" required>
+      <div *ngIf="pessoaJuridicaForm.get('cnpj')?.errors" style="font-size: 10px; color: red;">
+          *Pessoa jurídica obrigatória
+        </div>
+    </div>
+
+    <div class="col-6">
+      <label for="insEstadual" class="form-label">Inscrição estatual</label>
+      <input type="text" maxlength="100" class="form-control" id="insEstadual" name="insEstadual" formControlName="insEstadual" required>
+      <div *ngIf="pessoaJuridicaForm.get('insEstadual')?.errors" style="font-size: 10px; color: red;">
+          *Inscrição estatual obrigatória
+        </div>
+    </div>
+
+    <div class="col-6">
+      <label for="insMunicipal" class="form-label">Inscrição municipal</label>
+      <input type="text" maxlength="100" class="form-control" id="insMunicipal" name="insMunicipal" formControlName="insMunicipal" required>
+      <div *ngIf="pessoaJuridicaForm.get('insMunicipal')?.errors" style="font-size: 10px; color: red;">
+          *Inscrição municipal obrigatória
+        </div>
+    </div>
+
+    <div class="col-4">
+      <label for="razaoSocial" class="form-label">Razão social</label>
+      <input type="text" maxlength="100" class="form-control" id="razaoSocial" name="razaoSocial" formControlName="razaoSocial" required>
+      <div *ngIf="pessoaJuridicaForm.get('razaoSocial')?.errors" style="font-size: 10px; color: red;">
+          *Razão social obrigatória
+        </div>
+    </div>
+
+    <div class="col-4">
+      <label for="categoria" class="form-label">Categoria</label>
+      <input type="text" maxlength="100" class="form-control" id="categoria" name="categoria" formControlName="categoria" required>
+      <div *ngIf="pessoaJuridicaForm.get('categoria')?.errors" style="font-size: 10px; color: red;">
+          *Categoria obrigatória
+        </div>
+    </div>
+
+    <div class="col-4">
+      <label for="nome" class="form-label">Nome do responsável</label>
+      <input type="text" maxlength="100" class="form-control" id="nome" name="nome" formControlName="nome" required>
+      <div *ngIf="pessoaJuridicaForm.get('nome')?.errors" style="font-size: 10px; color: red;">
+          *Nome do responsável obrigatório
+        </div>
+    </div>
+
+    <div class="col-4">
+      <label for="email" class="form-label">E-mail do responsável</label>
+      <input type="text" maxlength="100" class="form-control" id="email" name="email" formControlName="email" required>
+      <div *ngIf="pessoaJuridicaForm.get('email')?.errors" style="font-size: 10px; color: red;">
+          *E-mail do responsável obrigatório
+        </div>
+    </div>
+
+    <div class="col-4">
+      <label for="telefone" class="form-label">Telefone do responsável</label>
+      <input type="text" maxlength="100" class="form-control" id="telefone" name="telefone" formControlName="telefone" required>
+      <div *ngIf="pessoaJuridicaForm.get('telefone')?.errors" style="font-size: 10px; color: red;">
+          *Telefone do responsável obrigatório
+        </div>
+    </div>
+
+    <div class="col-4">
+      <label for="tipoPessoa" class="form-label">Tipo pessoa</label>
+      <input type="text" maxlength="100" class="form-control" id="tipoPessoa" name="tipoPessoa" formControlName="tipoPessoa" required>
+      <div *ngIf="pessoaJuridicaForm.get('tipoPessoa')?.errors" style="font-size: 10px; color: red;">
+          *Tipo pessoa obrigatório
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button style="margin-right: 10px" type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="cadastrarPessoaJuridica()" [disabled]="!pessoaJuridicaForm.valid">Salvar</button>
+        <button type="button" class="mat-elevation-z4" mat-stroked-button color="primary" (click)="novo()">Limpar</button>
+    </div>
+</form>
+
+<form class="row g-3">
+    <label for="pesquisa" class="form-label">Pesquisar</label>
+    <div class="col-10">
+        <input type="text" #pesquisa (blur)="setPesquisa(pesquisa.value)"  class="form-control" id="pesquisa" name="pesquisa" placeholder="Nome fantasia para pesquisar">
+    </div>
+    <div class="col-2">
+        <button type="button" style="width: 80%;" class="mat-elevation-z4" mat-flat-button color="primary" (click)="pesquisar()">Pesquisar</button>
+    </div>
+</form>
+
+<br>
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Empresa</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pessoaJuridica of listaPJ">
+            <td>{{ pessoaJuridica.id }}</td>
+            <td>{{ pessoaJuridica.nomeFantasia }}</td>
+            <td>{{ pessoaJuridica.empresa?.nome }}</td>
+            <td>
+                <button type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="editarPessoaJuridica(pessoaJuridica)">Editar</button>
+                <button type="button" class="mat-elevation-z4" mat-flat-button color="warn" (click)="excluirPessoaJuridica(pessoaJuridica)">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" (click)="voltar()">Voltar</a>
+    </li>
+    <li class="page-item" *ngFor="let p of arrayNumber; let i = index">
+      <a class="page-link" (click)="buscarPagina(i)">{{ i + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="proxima()">Próxima</a>
+    </li>
+  </ul>
+</nav>
+

@@ -40,7 +40,7 @@ export class PessoaJuridicaComponent implements OnInit {
           nome: [null, Validators.required],
           email: [null, Validators.required],
           telefone: [null, Validators.required],
-          tipoPessoa: [null, Validators.required],
+          tipoPessoa: [null, !Validators.required],
           empresa: [this.loginService.objetoEmpresa(), Validators.required]
         });
  }
@@ -61,7 +61,7 @@ export class PessoaJuridicaComponent implements OnInit {
       nome: [null, Validators.required],
       email: [null, Validators.required],
       telefone: [null, Validators.required],
-      tipoPessoa: [null, Validators.required],
+      tipoPessoa: [null, !Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
   }

@@ -24,7 +24,7 @@ export class PessoaJuridicaService {
           var jsonResposta = JSON.parse(resposta);
 
           if(jsonResposta.error == undefined){
-            this.toastr.success('PessoaJuridica salva com sucesso!');
+            this.toastr.success('Pessoa jurídica salva com sucesso!');
           } else {
             this.toastr.error(jsonResposta.error);
           }
