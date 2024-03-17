@@ -36,6 +36,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MarcaProdutoComponent } from './components/marca-produto/marca-produto.component';
 import { AcessoComponent } from './components/acesso/acesso.component';
+import { PessoaJuridicaComponent } from './components/pessoa-juridica/pessoa-juridica.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AcessoComponent } from './components/acesso/acesso.component';
     NavbarComponent,
     CategoriaProdutoComponent,
     MarcaProdutoComponent,
-    AcessoComponent
+    AcessoComponent,
+    PessoaJuridicaComponent
   ],
   imports: [
     BrowserModule,
