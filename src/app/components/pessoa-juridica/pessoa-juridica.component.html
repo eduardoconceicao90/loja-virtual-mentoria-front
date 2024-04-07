@@ -4,6 +4,7 @@
         <label for="id" class="form-label">ID:</label>
         <input type="number" class="form-control" id="id" name="id" placeholder="ID" formControlName="id" readonly>
     </div>
+
     <div class="col-5">
         <label for="nomeFantasia" class="form-label">Nome fantasia</label>
         <input type="text" maxlength="100" class="form-control" id="nomeFantasia" name="nomeFantasia" formControlName="nomeFantasia" required>
@@ -16,7 +17,7 @@
       <label for="cnpj" class="form-label">CNPJ</label>
       <input type="text" maxlength="100" class="form-control" id="cnpj" name="cnpj" formControlName="cnpj" required mask="00.000.000/0000-00">
       <div *ngIf="pessoaJuridicaForm.get('cnpj')?.errors" style="font-size: 10px; color: red;">
-          *Pessoa jurídica obrigatória
+          *CNPJ obrigatório
         </div>
     </div>
 
