@@ -4,7 +4,7 @@
         <label for="id" class="form-label">ID:</label>
         <input type="number" class="form-control" id="id" name="id" placeholder="ID" formControlName="id" readonly>
     </div>
-    
+
     <div class="col-10">
         <label for="descricao" class="form-label">Nome do acesso</label>
         <input type="text" maxlength="100" class="form-control" id="descricao" name="descricao" placeholder="Nome do acesso" formControlName="descricao" required>
@@ -56,13 +56,13 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" (click)="voltar()">Voltar</a>
+      <a href="#" onclick="return false;" class="page-link" (click)="voltar()">Voltar</a>
     </li>
     <li class="page-item" *ngFor="let p of arrayNumber; let i = index">
-      <a class="page-link" (click)="buscarPagina(i)">{{ i + 1 }}</a>
+      <a href="#" onclick="return false;" class="page-link" (click)="buscarPagina(i)">{{ i + 1 }}</a>
     </li>
     <li class="page-item">
-      <a class="page-link" (click)="proxima()">Próxima</a>
+      <a href="#" onclick="return false;" class="page-link" (click)="proxima()">Próxima</a>
     </li>
   </ul>
 </nav>
