@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Endereco } from 'src/app/model/endereco';
 import { PessoaJuridica } from 'src/app/model/pessoa-juridica';
 import { LoginService } from 'src/app/security/login.service';
 import { PessoaJuridicaService } from 'src/app/services/pessoa-juridica.service';
@@ -14,6 +15,7 @@ import { PessoaJuridicaService } from 'src/app/services/pessoa-juridica.service'
 export class PessoaJuridicaComponent implements OnInit {
 
   listaPJ: PessoaJuridica[] = [];
+  enderecos: Endereco[] = [];
   pessoaJuridicaForm: FormGroup;
   pj: PessoaJuridica;
   pesquisa: string = '';
@@ -41,6 +43,7 @@ export class PessoaJuridicaComponent implements OnInit {
           email: [null, Validators.required],
           telefone: [null, Validators.required],
           tipoPessoa: ["", !Validators.required],
+          enderecos: [this.enderecos, !Validators.required],
           empresa: [this.loginService.objetoEmpresa(), Validators.required]
         });
  }
@@ -50,6 +53,7 @@ export class PessoaJuridicaComponent implements OnInit {
   }
 
   novo(): void {
+    this.enderecos = [];
     this.pessoaJuridicaForm = this.fb.group({
       id:[],
       cnpj: [null, Validators.required],
@@ -62,6 +66,7 @@ export class PessoaJuridicaComponent implements OnInit {
       email: [null, Validators.required],
       telefone: [null, Validators.required],
       tipoPessoa: ["", !Validators.required],
+      enderecos: [this.enderecos, !Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
   }
@@ -80,6 +85,7 @@ export class PessoaJuridicaComponent implements OnInit {
       email: this.pessoaJuridicaForm.get('email')?.value!,
       telefone: this.pessoaJuridicaForm.get('telefone')?.value!,
       tipoPessoa: this.pessoaJuridicaForm.get('tipoPessoa')?.value!,
+      enderecos: this.pessoaJuridicaForm.get('enderecos')?.value!,
       empresa: this.pessoaJuridicaForm.get('empresa')?.value!
     }
   }
@@ -113,6 +119,8 @@ export class PessoaJuridicaComponent implements OnInit {
       }
     });
 
+    this.enderecos = this.pj.enderecos != undefined ? this.pj.enderecos : new Array<Endereco>();
+
     this.pessoaJuridicaForm = this.fb.group({
       id:[this.pj.id],
       cnpj: [this.pj.cnpj, Validators.required],
@@ -125,6 +133,7 @@ export class PessoaJuridicaComponent implements OnInit {
       email: [this.pj.email, Validators.required],
       telefone: [this.pj.telefone, Validators.required],
       tipoPessoa: [this.pj.tipoPessoa, Validators.required],
+      enderecos: [this.pj.enderecos, Validators.required],
       empresa: [this.loginService.objetoEmpresa(), Validators.required]
     });
   }
