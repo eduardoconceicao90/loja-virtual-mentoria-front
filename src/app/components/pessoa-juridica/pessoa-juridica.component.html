@@ -96,6 +96,96 @@
         </div>
     </div>
 
+    <h2 style="text-align: center; margin-top: 2rem;">Endereço</h2>
+
+    <form class="row g-3" [formGroup]="enderecoForm">
+      <div class="col-2">
+        <label for="id" class="form-label">ID:</label>
+        <input type="number" class="form-control" id="id" name="id" placeholder="ID" formControlName="id" readonly>
+      </div>
+
+      <div class="col-5">
+        <label for="ruaLogra" class="form-label">Logradouro</label>
+        <input type="text" maxlength="100" class="form-control" id="ruaLogra" name="ruaLogra" formControlName="ruaLogra" required>
+        <div *ngIf="enderecoForm.get('ruaLogra')?.errors" style="font-size: 10px; color: red;">
+            *Logradouro obrigatório
+          </div>
+      </div>
+
+      <div class="col-5">
+        <label for="complemento" class="form-label">Complemento</label>
+        <input type="text" maxlength="100" class="form-control" id="complemento" name="complemento" formControlName="complemento" required>
+        <div *ngIf="enderecoForm.get('complemento')?.errors" style="font-size: 10px; color: red;">
+            *Complemento obrigatório
+          </div>
+      </div>
+
+      <div class="col-2">
+        <label for="numero" class="form-label">Número</label>
+        <input type="text" maxlength="10" class="form-control" id="numero" name="numero" formControlName="numero" required>
+        <div *ngIf="enderecoForm.get('numero')?.errors" style="font-size: 10px; color: red;">
+            *Número obrigatório
+          </div>
+      </div>
+
+      <div class="col-5">
+        <label for="bairro" class="form-label">Bairro</label>
+        <input type="text" maxlength="100" class="form-control" id="bairro" name="bairro" formControlName="bairro" required>
+        <div *ngIf="enderecoForm.get('bairro')?.errors" style="font-size: 10px; color: red;">
+            *Bairro obrigatório
+          </div>
+      </div>
+
+      <div class="col-5">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input type="text" maxlength="100" class="form-control" id="cidade" name="cidade" formControlName="cidade" required>
+        <div *ngIf="enderecoForm.get('cidade')?.errors" style="font-size: 10px; color: red;">
+            *Cidade obrigatória
+          </div>
+      </div>
+
+      <div class="col-2">
+        <label for="uf" class="form-label">UF</label>
+        <input type="text" maxlength="10" class="form-control" id="uf" name="uf" formControlName="uf" required>
+        <div *ngIf="enderecoForm.get('uf')?.errors" style="font-size: 10px; color: red;">
+            *UF obrigatório
+          </div>
+      </div>
+
+      <div class="col-3">
+        <label for="cep" class="form-label">CEP</label>
+        <input type="text" maxlength="100" class="form-control" id="cep" name="cep" formControlName="cep" required mask="00000-000">
+        <div *ngIf="enderecoForm.get('cep')?.errors" style="font-size: 10px; color: red;">
+            *CEP obrigatório
+          </div>
+      </div>
+
+      <div class="col-4">
+        <label for="pais" class="form-label">País</label>
+        <input type="text" maxlength="100" class="form-control" id="pais" name="pais" formControlName="pais" required>
+        <div *ngIf="enderecoForm.get('pais')?.errors" style="font-size: 10px; color: red;">
+            *País obrigatório
+          </div>
+      </div>
+
+      <div class="col-3">
+        <label for="tipoEndereco" class="form-label">Tipo endereço</label>
+        <select class="form-select" formControlName="tipoEndereco" required>
+          <option value="">--- Selecione ---</option>
+          <option value="COBRANCA">Cobrança</option>
+          <option value="ENTREGA">Entrega</option>
+        </select>
+        <div *ngIf="enderecoForm.get('tipoEndereco')?.errors" style="font-size: 10px; color: red;">
+            *Tipo pessoa obrigatório
+          </div>
+      </div>
+
+      <div class="col-12">
+        <button style="margin-right: 10px" type="button" class="mat-elevation-z4" mat-flat-button color="primary" (click)="cadastrarPessoaJuridica()" [disabled]="!enderecoForm.valid">Adicionar endereço</button>
+    </div>
+
+    </form>
+
     <table class="table table-condensed table-hover">
       <thead>
           <tr>

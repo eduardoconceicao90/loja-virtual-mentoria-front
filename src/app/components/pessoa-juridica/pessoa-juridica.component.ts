@@ -17,6 +17,7 @@ export class PessoaJuridicaComponent implements OnInit {
   listaPJ: PessoaJuridica[] = [];
   enderecos: Endereco[] = [];
   pessoaJuridicaForm: FormGroup;
+  enderecoForm: FormGroup;
   pj: PessoaJuridica;
   pesquisa: string = '';
   qtdPagina: any = 0;
@@ -45,6 +46,19 @@ export class PessoaJuridicaComponent implements OnInit {
           tipoPessoa: ["", !Validators.required],
           enderecos: [this.enderecos, !Validators.required],
           empresa: [this.loginService.objetoEmpresa(), Validators.required]
+        });
+
+        this.enderecoForm = this.fb.group({
+          id:[],
+          ruaLogra: [null, Validators.required],
+          numero: [null, Validators.required],
+          complemento: [null, Validators.required],
+          bairro: [null, Validators.required],
+          cidade: [null, Validators.required],
+          uf: [null, Validators.required],
+          cep: [null, Validators.required],
+          pais: [null, Validators.required],
+          tipoEndereco: ["", Validators.required]
         });
  }
 
@@ -85,7 +99,7 @@ export class PessoaJuridicaComponent implements OnInit {
       email: this.pessoaJuridicaForm.get('email')?.value!,
       telefone: this.pessoaJuridicaForm.get('telefone')?.value!,
       tipoPessoa: this.pessoaJuridicaForm.get('tipoPessoa')?.value!,
-      enderecos: this.pessoaJuridicaForm.get('enderecos')?.value!,
+      enderecos: this.enderecos,
       empresa: this.pessoaJuridicaForm.get('empresa')?.value!
     }
   }
